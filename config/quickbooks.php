@@ -93,4 +93,5 @@ return [
         'model' => User::class,
     ],
 
+    'connection' => env('DB_CONNECTION', 'mysql'),
 ];

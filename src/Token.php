@@ -134,4 +134,14 @@ class Token extends Model
 
         return $this->belongsTo($config['model'], $config['keys']['foreign'], $config['keys']['owner']);
     }
+
+    /**
+     * Get the current connection name for the model.
+     *
+     * @return string|null
+     */
+    public function getConnectionName()
+    {
+        return config('quickbooks.connection');
+    }
 }
