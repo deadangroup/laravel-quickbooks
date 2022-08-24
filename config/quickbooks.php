@@ -93,5 +93,6 @@ return [
         'model' => User::class,
     ],
 
+    //token model database connection
     'connection' => env('DB_CONNECTION', 'mysql'),
 ];
