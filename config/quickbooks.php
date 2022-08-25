@@ -1,7 +1,5 @@
 <?php
 
-use App\User;
-
 return [
 
     /*
@@ -24,6 +22,7 @@ return [
 
     'data_service' => [
         'auth_mode'     => 'oauth2',
+        //'base_url'      => env('QUICKBOOKS_API_URL', config('app.env') === 'production' ? 'Production' : 'Development'),
         'base_url'      => env('QUICKBOOKS_API_URL', config('app.env') === 'production' ? 'Production' : 'Development'),
         'client_id'     => env('QUICKBOOKS_CLIENT_ID'),
         'client_secret' => env('QUICKBOOKS_CLIENT_SECRET'),
@@ -42,57 +41,6 @@ return [
 
     'logging' => [
         'enabled' => env('QUICKBOOKS_DEBUG', config('app.debug')),
-
         'location' => storage_path('logs'),
     ],
-
-    /*
-    |--------------------------------------------------------------------------
-    | Properties to configure the routes
-    |--------------------------------------------------------------------------
-    |
-    | There are several routes that are needed for the package, so these
-    | properties allow configuring them to fit the application as needed.
-    |
-    */
-
-    'route' => [
-        // Controls the middlewares for thr routes.  Can be a string or array of strings
-        'middleware' => [
-            // Added to the protected routes for the package (i.e. connect & disconnect)
-            'authenticated' => 'auth',
-            // Added to all of the routes for the package
-            'default'       => 'web',
-        ],
-        'paths'      => [
-            // Show forms to connect/disconnect
-            'connect'    => 'connect',
-            // The DELETE takes place to remove token
-            'disconnect' => 'disconnect',
-            // Return URI that QuickBooks sends code to allow getting OAuth token
-            'token'      => 'token',
-        ],
-        'prefix'     => 'quickbooks',
-    ],
-
-    /*
-    |--------------------------------------------------------------------------
-    | Properties for control the "user" relationship in Token
-    |--------------------------------------------------------------------------
-    |
-    | The Token class has a "user" relationship, and these properties allow
-    | configuring the relationship.
-    |
-    */
-
-    'user' => [
-        'keys'  => [
-            'foreign' => 'user_id',
-            'owner'   => 'id',
-        ],
-        'model' => User::class,
-    ],
-
-    //token model database connection
-    'connection' => env('DB_CONNECTION', 'mysql'),
 ];

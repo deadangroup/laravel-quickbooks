@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
-    <title>{{ config('app.name') }} - QuickBooks Authorization</title>
+    <title>{{ config('app.name') }} - QuickBooks connection successful</title>
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
@@ -15,20 +15,16 @@
 
 <div class="container">
     <div class="py-5 text-center">
-        <h3 class="page-heading">{{ $tenant->name }} QuickBooks Authorization</h3>
+        <h3 class="page-heading">QuickBooks linking successful</h3>
         {{--        <h2>Checkout form</h2>--}}
         <p class="lead">
-            Click the link below to connect <b>{{ $tenant->name }}</b> to Quickbooks Online.</p>
-    </div>
+            Your business <b>{{ $tenant->name }}</b> has linked to Quickbooks Online
+            company <b>{{ $company->CompanyName }}</b> successfully.
+        </p>
 
-    <div class="row">
-        <div class="col-md-12 order-md-4 mb-4">
-            <div class="py-5 text-center">
-                <a class="btn btn-info" href="{!! $authorization_uri !!}">
-                    Connect to QuickBooks
-                </a>
-            </div>
-        </div>
+        <p class="lead">
+            Please close this window, return to the previous window and reload to configure data synchronization.
+        </p>
     </div>
 
     <footer class="my-5 pt-5 text-muted text-center text-small">

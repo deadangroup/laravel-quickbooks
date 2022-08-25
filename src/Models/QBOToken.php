@@ -1,31 +1,50 @@
 <?php
 
-namespace Deadan\QuickBooks;
+namespace TenancyQBO\Models;
 
 use Carbon\Carbon;
+use Deadan\TenancyAccount\Models\Tenant;
 use Exception;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use QuickBooksOnline\API\Core\OAuth\OAuth2\OAuth2AccessToken;
+use QuickBooksOnline\API\Data\IPPCompanyInfo;
 use QuickBooksOnline\API\Exception\SdkException;
+use Stancl\Tenancy\Database\Concerns\CentralConnection;
 
 /**
  * Class Token
  *
- * @package Deadan\QuickBooks
+ * @package TenancyQBO
  *
  * @property boolean $hasValidAccessToken Is the access token valid
  * @property boolean $hasValidRefreshToken Is the refresh token valid
  * @property Carbon $access_token_expires_at Timestamp that the access token expires
  * @property Carbon $refresh_token_expires_at Timestamp that the refresh token expires
- * @property integer $user_id Id of the related User
+ * @property integer $tenant_id Id of the related tenant
  * @property string $access_token The access token
  * @property string $realm_id Realm Id from the OAuth token
  * @property string $refresh_token The refresh token
- * @property User $user
  */
-class Token extends Model
+class QBOToken extends Model
 {
+    use CentralConnection;
+    use SoftDeletes;
+
+    /**
+     * Indicates if the IDs are auto-incrementing.
+     *
+     * @var bool
+     */
+    public $incrementing = false;
+
+    /**
+     * The "type" of the primary key ID.
+     *
+     * @var string
+     */
+    protected $keyType = 'string';
+
     /**
      * The table associated with the model.
      *
@@ -49,18 +68,43 @@ class Token extends Model
      * @var array
      */
     protected $fillable = [
+        'id',
+        'auth_code',
         'access_token',
         'access_token_expires_at',
         'realm_id',
         'refresh_token',
         'refresh_token_expires_at',
-        'user_id',
+        'tenant_id',
+        'qbo_company_id',
+        'qbo_company_name',
+        'qbo_company_address',
+        'qbo_company_email',
     ];
+
+    /**
+     * Remove the token
+     *
+     * When a token is deleted, we still need a token for the client for the owner.
+     *
+     * @return QBOToken
+     * @throws Exception
+     */
+    public static function init()
+    {
+        $tenantId = tenant('id');
+        $id = substr(md5($tenantId.time()), 0, 12);
+
+        return QBOToken::create([
+            'id'        => $id,
+            'tenant_id' => $tenantId,
+        ]);
+    }
 
     /**
      * Check if access token is valid
      *
-     * A token is good for 1 hour, so if it expires greater than 1 hour from now, it is still valid
+     * A token is good for 1 hour, so if it's expires greater than 1 hour from now, it is still valid
      *
      * @return bool
      */
@@ -73,7 +117,7 @@ class Token extends Model
     /**
      * Check if refresh token is valid
      *
-     * A token is good for 101 days, so if it expires greater than 101 days from now, it is still valid
+     * A token is good for 101 days, so if it's expires greater than 101 days from now, it is still valid
      *
      * @return bool
      */
@@ -88,9 +132,9 @@ class Token extends Model
      *
      * Process the OAuth token & store it in the persistent storage
      *
-     * @param OAuth2AccessToken $oauth_token
+     * @param  OAuth2AccessToken  $oauth_token
      *
-     * @return Token
+     * @return QBOToken
      * @throws SdkException
      */
     public function parseOauthToken(OAuth2AccessToken $oauth_token)
@@ -106,42 +150,36 @@ class Token extends Model
     }
 
     /**
-     * Remove the token
+     * Parse Company details.
      *
-     * When a token is deleted, we still need a token for the client for the user.
+     * Process the Company info & store it in the persistent storage
      *
-     * @return Token
-     * @throws Exception
+     * @param  \QuickBooksOnline\API\Data\IPPCompanyInfo  $companyInfo
+     *
+     * @return QBOToken
      */
-    public function remove()
+    public function parseCompanyDetails(IPPCompanyInfo $companyInfo)
     {
-        $user = $this->user;
+        $this->qbo_company_id = $companyInfo->Id;
+        $this->qbo_company_name = $companyInfo->CompanyName;
 
-        $this->delete();
+        $address = join(",", (array) $companyInfo->CompanyAddr);
+        $address = str_replace(",,", ",", $address);
 
-        return $user->quickBooksToken()
-                    ->make();
+        $this->qbo_company_address = $address;
+
+        $email = join(",", (array) $companyInfo->CompanyEmailAddr);
+        $email = str_replace(",,", ",", $email);
+        $this->qbo_company_email = $email;
+
+        return $this;
     }
 
     /**
-     * Belongs to user.
-     *
-     * @return BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function user()
+    public function tenant()
     {
-        $config = config('quickbooks.user');
-
-        return $this->belongsTo($config['model'], $config['keys']['foreign'], $config['keys']['owner']);
-    }
-
-    /**
-     * Get the current connection name for the model.
-     *
-     * @return string|null
-     */
-    public function getConnectionName()
-    {
-        return config('quickbooks.connection');
+        return $this->belongsTo(Tenant::class, 'tenant_id');
     }
 }

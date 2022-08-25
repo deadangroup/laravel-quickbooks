@@ -1,7 +1,7 @@
 /vendor
-/.idea/
-/node_modules
-phpunit.xml
-/build
-.phpunit.result.cache
-composer.lock
+/.idea
+/.vagrant
+Homestead.json
+Homestead.yaml
+npm-debug.log
+yarn-error.log
