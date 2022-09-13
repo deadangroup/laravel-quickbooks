@@ -53,8 +53,7 @@ class RouteServiceProvider extends ServiceProvider
     /**
      * @return array
      */
-    protected function centralDomains()
-    : array
+    protected function centralDomains(): array
     {
         return config('tenancy.central_domains', []);
     }

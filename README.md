@@ -90,13 +90,3 @@ Psy Shell v0.8.17 (PHP 7.1.14 — cli) by Justin Hileman
 
 You can call any of the resources as documented [in the SDK](https://intuit.github.io/QuickBooks-V3-PHP-SDK/quickstart.html).
 
-## Middleware
-
-If you have routes that will be dependent on the user's account having a usable QuickBooks OAuth token, there is an included middleware ```Deadan\QuickBooks\Laravel\Filter``` that gets registered as ```quickbooks``` that will ensure the account is linked and redirect them to the `connect` route if needed.
-
-Here is an example route definition:
-
-```php
-Route::view('some/route/needing/quickbooks/token/before/using', 'some.view')
-     ->middleware('quickbooks');
-```

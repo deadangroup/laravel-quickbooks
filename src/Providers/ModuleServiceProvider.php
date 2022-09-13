@@ -21,13 +21,13 @@ class ModuleServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->loadTranslationsFrom(__DIR__.'/../../resources/lang', 'quickbooks');
-        $this->loadViewsFrom(__DIR__.'/../../resources/views', 'quickbooks');
+        $this->loadTranslationsFrom(__DIR__.'/../../resources/lang', 'tenancy_quickbooks');
+        $this->loadViewsFrom(__DIR__.'/../../resources/views', 'tenancy_quickbooks');
 
         $this->loadMigrationsFrom(__DIR__.'/../../resources/database/migrations');
 
         $this->publishes([
-            __DIR__.'/../../config/quickbooks.php' => config_path('quickbooks.php'),
+            __DIR__.'/../../config/tenancy_quickbooks.php' => config_path('tenancy_quickbooks.php'),
         ], 'quickbooks-config');
 
         $this->publishes([
@@ -46,8 +46,8 @@ class ModuleServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $config = __DIR__.'/../../config/quickbooks.php';
-        $this->mergeConfigFrom($config, 'quickbooks');
+        $config = __DIR__.'/../../config/tenancy_quickbooks.php';
+        $this->mergeConfigFrom($config, 'tenancy_quickbooks');
 
         $this->app->register(RouteServiceProvider::class);
     }

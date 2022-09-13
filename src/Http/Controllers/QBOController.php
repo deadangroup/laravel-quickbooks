@@ -7,6 +7,9 @@ use Illuminate\Routing\Controller as LaravelController;
 use TenancyQBO\Models\QBOToken;
 use TenancyQBO\QBOClient;
 
+/**
+ *
+ */
 class QBOController extends LaravelController
 {
     /**
@@ -27,7 +30,7 @@ class QBOController extends LaravelController
         $token = QBOToken::findOrFail($token_id);
         $tenant = $token->tenant;
 
-        $quickbooks = new QBOClient(config('quickbooks'), $token);
+        $quickbooks = new QBOClient(config('tenancy_quickbooks'), $token);
 
         // Give view to remove token if user already linked account
         if ($quickbooks->hasValidRefreshToken()) {
@@ -63,7 +66,7 @@ class QBOController extends LaravelController
         $token_id = session('token_id');
 
         $token = QBOToken::findOrFail($token_id);
-        $config = config('quickbooks');
+        $config = config('tenancy_quickbooks');
         $quickbooks = new QBOClient($config, $token);
 
         // TODO: Deal with exceptions
@@ -93,7 +96,7 @@ class QBOController extends LaravelController
         $token = QBOToken::findOrFail($token_id);
         $tenant = $token->tenant;
 
-        $config = config('quickbooks');
+        $config = config('tenancy_quickbooks');
         $quickbooks = new QBOClient($config, $token);
         $company = $quickbooks->getDataService()
                               ->getCompanyInfo();
