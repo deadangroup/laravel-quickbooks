@@ -1,17 +1,36 @@
 <?php
 
-namespace TenancyQBO\Http\Controllers;
+namespace Deadan\TenancyQBO\Http\Controllers;
 
+use dPOS\Integrations\Events\AnalyticsEvent;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as LaravelController;
-use TenancyQBO\Models\QBOToken;
-use TenancyQBO\QBOClient;
+use Deadan\TenancyQBO\QBOToken;
+use Deadan\TenancyQBO\QBOClient;
 
 /**
  *
  */
 class QBOController extends LaravelController
 {
+    /**
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function initiateConnection()
+    {
+        $tenantId = tenant('id');
+
+        //invalidate all previous tokens
+        QBOToken::invalidateAllFor($tenantId);
+
+        //invalidate all previous tokens
+        $token = QBOToken::init($tenantId);
+
+        event(new AnalyticsEvent('QuickBooksConnectionInit'));
+
+        return redirect()->route('quickbooks.connect', ['token_id' => $token->id]);
+    }
+
     /**
      * Form to connect/disconnect user to QuickBooks
      *
@@ -20,6 +39,7 @@ class QBOController extends LaravelController
      * @param  \Illuminate\Http\Request  $request
      *
      * @return \Illuminate\Contracts\View\View|\Illuminate\View\View
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
      * @throws \QuickBooksOnline\API\Exception\SdkException
      * @throws \QuickBooksOnline\API\Exception\ServiceException
      */

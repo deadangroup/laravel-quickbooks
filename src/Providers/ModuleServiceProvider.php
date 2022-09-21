@@ -5,7 +5,7 @@
  * <code> Build something people want </code>
  */
 
-namespace TenancyQBO\Providers;
+namespace Deadan\TenancyQBO\Providers;
 
 use Illuminate\Support\ServiceProvider;
 

@@ -1,18 +1,17 @@
 <?php
 
-namespace TenancyQBO;
+namespace Deadan\TenancyQBO;
 
 use Exception;
 use QuickBooksOnline\API\DataService\DataService;
 use QuickBooksOnline\API\Exception\SdkException;
 use QuickBooksOnline\API\Exception\ServiceException;
 use QuickBooksOnline\API\ReportService\ReportService;
-use TenancyQBO\Models\QBOToken;
 
 /**
  * Class QBOClient
  *
- * @package TenancyQBO
+ * @package Deadan\TenancyQBO
  */
 class QBOClient
 {
