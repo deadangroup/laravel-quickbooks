@@ -17,14 +17,14 @@
  */
 
 Route::get('quickbooks_preconnect', 'QuickbooksSyncController@initiateConnection')
-     ->name('quickbooks.pre_connect');
+     ->name('tenancy_quickbooks.pre_connect');
 
 Route::get('quickbooks_connect', 'QBOController@connect')
-     ->name('quickbooks.connect');
+     ->name('tenancy_quickbooks.connect');
 
 Route::get('quickbooks_token', 'QBOController@token')
-     ->name('quickbooks.token');
+     ->name('tenancy_quickbooks.token');
 
 Route::get('quickbooks_success', 'QBOController@success')
-     ->name('quickbooks.success');
+     ->name('tenancy_quickbooks.success');
 

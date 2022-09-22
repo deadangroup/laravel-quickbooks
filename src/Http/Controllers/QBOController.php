@@ -28,7 +28,7 @@ class QBOController extends LaravelController
 
         event(new AnalyticsEvent('QuickBooksConnectionInit'));
 
-        return redirect()->route('quickbooks.connect', ['token_id' => $token->id]);
+        return redirect()->route('tenancy_quickbooks.connect', ['token_id' => $token->id]);
     }
 
     /**
@@ -55,7 +55,7 @@ class QBOController extends LaravelController
         // Give view to remove token if user already linked account
         if ($quickbooks->hasValidRefreshToken()) {
             return view()
-                ->make('quickbooks::disconnect')
+                ->make('tenancy_quickbooks::disconnect')
                 ->with('company', $quickbooks->getDataService()
                                              ->getCompanyInfo());
         }
@@ -64,7 +64,7 @@ class QBOController extends LaravelController
 
         // Give view to link account
         return view()
-            ->make('quickbooks::connect')
+            ->make('tenancy_quickbooks::connect')
             ->with('authorization_uri', $quickbooks->authorizationUri())
             ->with('tenant', $tenant);
     }
@@ -98,7 +98,7 @@ class QBOController extends LaravelController
         // TODO: Deal with exceptions
 
         // Give view to disconnect account
-        return redirect()->route('quickbooks.success', ['token_id' => $token_id]);
+        return redirect()->route('tenancy_quickbooks.success', ['token_id' => $token_id]);
     }
 
     /**
@@ -123,7 +123,7 @@ class QBOController extends LaravelController
 
         // Give view to disconnect account
         return view()
-            ->make('quickbooks::success')
+            ->make('tenancy_quickbooks::success')
             ->with('company', $company)
             ->with('tenant', $tenant);
     }

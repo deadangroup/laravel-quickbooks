@@ -35,7 +35,7 @@ class ModuleServiceProvider extends ServiceProvider
         ], 'quickbooks-migrations');
 
         $this->publishes([
-            __DIR__.'/../../resources/views' => base_path('resources/views/vendor/quickbooks'),
+            __DIR__.'/../../resources/views' => base_path('resources/views/vendor/tenancy_quickbooks'),
         ], 'quickbooks-views');
     }
 
