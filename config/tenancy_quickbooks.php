@@ -10,7 +10,7 @@ return [
     | The configuration keys for the SDK are inconsistent in naming convention.
     | We are adhering to snake_case.  We make a sensible guess for 'base_url'
     | using the app's env, but you can can it with 'QUICKBOOKS_API_URL'.  Also,
-    | the 'redirect_uri' is made in the client from the 'quickbooks.token'
+    | the 'redirect_uri' is made in the client from the 'tenancy_quickbooks.token'
     | named route, so it cannot be configured here.
     |
     | Most of the time, only 'QUICKBOOKS_CLIENT_ID' & 'QUICKBOOKS_CLIENT_SECRET'

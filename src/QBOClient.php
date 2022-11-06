@@ -1,18 +1,17 @@
 <?php
 
-namespace TenancyQBO;
+namespace Deadan\TenancyQBO;
 
 use Exception;
 use QuickBooksOnline\API\DataService\DataService;
 use QuickBooksOnline\API\Exception\SdkException;
 use QuickBooksOnline\API\Exception\ServiceException;
 use QuickBooksOnline\API\ReportService\ReportService;
-use TenancyQBO\Models\QBOToken;
 
 /**
  * Class QBOClient
  *
- * @package TenancyQBO
+ * @package Deadan\TenancyQBO
  */
 class QBOClient
 {
@@ -185,7 +184,7 @@ class QBOClient
             'baseUrl'      => $this->configs['data_service']['base_url'],
             'ClientID'     => $this->configs['data_service']['client_id'],
             'ClientSecret' => $this->configs['data_service']['client_secret'],
-            'RedirectURI'  => route('quickbooks.token'),
+            'RedirectURI'  => route('tenancy_quickbooks.token'),
             'scope'        => $this->configs['data_service']['scope'],
         ];
     }

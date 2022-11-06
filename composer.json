@@ -9,7 +9,7 @@
     "authors": [
         {
             "name": "Deadan Group Limited",
-            "email": "james@deadangroup.com"
+            "email": "james@dgl.co.ke"
         }
     ],
     "require": {
@@ -19,13 +19,13 @@
     },
     "autoload": {
         "psr-4": {
-            "TenancyQBO\\": "src/"
+            "Deadan\\TenancyQBO\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "TenancyQBO\\Providers\\ModuleServiceProvider"
+                "Deadan\\TenancyQBO\\Providers\\ModuleServiceProvider"
             ]
         },
         "branch-alias": {

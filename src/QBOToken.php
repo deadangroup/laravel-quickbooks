@@ -1,6 +1,6 @@
 <?php
 
-namespace TenancyQBO\Models;
+namespace Deadan\TenancyQBO;
 
 use Carbon\Carbon;
 use Deadan\TenancyAccount\Models\Tenant;
@@ -13,9 +13,9 @@ use QuickBooksOnline\API\Exception\SdkException;
 use Stancl\Tenancy\Database\Concerns\CentralConnection;
 
 /**
- * Class Token
+ * Class QBOToken
  *
- * @package TenancyQBO
+ * @package Deadan\TenancyQBO
  *
  * @property boolean $hasValidAccessToken Is the access token valid
  * @property boolean $hasValidRefreshToken Is the refresh token valid
@@ -90,15 +90,37 @@ class QBOToken extends Model
      * @return QBOToken
      * @throws Exception
      */
-    public static function init()
+    public static function init($tenantId)
     {
-        $tenantId = tenant('id');
         $id = substr(md5($tenantId.time()), 0, 12);
 
         return QBOToken::create([
             'id'        => $id,
             'tenant_id' => $tenantId,
         ]);
+    }
+
+    /**
+     * @param $tenantId
+     *
+     * @return mixed
+     */
+    public static function latestFor($tenantId)
+    {
+        return QBOToken::where('tenant_id', $tenantId)
+                       ->latest()
+                       ->first();
+    }
+
+    /**
+     * @param $tenantId
+     *
+     * @return mixed
+     */
+    public static function invalidateAllFor($tenantId)
+    {
+        return QBOToken::where('tenant_id', $tenantId)
+                       ->delete();
     }
 
     /**
