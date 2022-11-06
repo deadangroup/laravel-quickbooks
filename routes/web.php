@@ -16,7 +16,7 @@
 |
  */
 
-Route::get('quickbooks_preconnect', 'QuickbooksSyncController@initiateConnection')
+Route::get('quickbooks_preconnect', 'QBOController@initiateConnection')
      ->name('tenancy_quickbooks.pre_connect');
 
 Route::get('quickbooks_connect', 'QBOController@connect')
