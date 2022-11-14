@@ -20,9 +20,9 @@ The package uses the [auto registration feature](https://laravel.com/docs/packag
 
 ## Configuration
 
-1. You will need a ```quickBooksToken``` relationship on your ```User``` model.  There is a trait named ```Deadan\QuickBooks\HasQuickBooksToken```, which you can include on your ```User``` model, which will setup the relationship. To do this implement the following:
+1. You will need a ```quickBooksToken``` relationship on your ```User``` model.  There is a trait named ```DGL\QuickBooks\HasQuickBooksToken```, which you can include on your ```User``` model, which will setup the relationship. To do this implement the following:
 
-Add ```use Deadan\QuickBooks\HasQuickBooksToken;``` to your service container at the top of User.php
+Add ```use DGL\QuickBooks\HasQuickBooksToken;``` to your service container at the top of User.php
 and also add the trait within the class. For example:
 
 ```php
@@ -77,8 +77,8 @@ Psy Shell v0.8.17 (PHP 7.1.14 — cli) by Justin Hileman
      id: 1,
      // Other keys removed for example
    }
->>> $quickbooks = app('Deadan\QuickBooks\Client') // or app('QuickBooks')
-=> Deadan\QuickBooks\Client {#1613}
+>>> $quickbooks = app('DGL\QuickBooks\Client') // or app('QuickBooks')
+=> DGL\QuickBooks\Client {#1613}
 >>> $quickbooks->getDataService()->getCompanyInfo();
 => QuickBooksOnline\API\Data\IPPCompanyInfo {#1673
      +CompanyName: "Sandbox Company_US_1",

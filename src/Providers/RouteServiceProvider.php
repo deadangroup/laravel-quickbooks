@@ -5,7 +5,7 @@
  * <code> Build something people want </code>
  */
 
-namespace Deadan\TenancyQBO\Providers;
+namespace DGL\TenancyQBO\Providers;
 
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Route;
@@ -18,7 +18,7 @@ class RouteServiceProvider extends ServiceProvider
     /**
      * @var string
      */
-    protected $webNamespace = 'Deadan\TenancyQBO\Http\Controllers';
+    protected $webNamespace = 'DGL\TenancyQBO\Http\Controllers';
 
     /**
      * Define the routes for the module.

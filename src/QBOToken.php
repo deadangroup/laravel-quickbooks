@@ -1,9 +1,9 @@
 <?php
 
-namespace Deadan\TenancyQBO;
+namespace DGL\TenancyQBO;
 
 use Carbon\Carbon;
-use Deadan\TenancyAccount\Models\Tenant;
+use DGL\TenancyAccount\Models\Tenant;
 use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -15,7 +15,7 @@ use Stancl\Tenancy\Database\Concerns\CentralConnection;
 /**
  * Class QBOToken
  *
- * @package Deadan\TenancyQBO
+ * @package DGL\TenancyQBO
  *
  * @property boolean $hasValidAccessToken Is the access token valid
  * @property boolean $hasValidRefreshToken Is the refresh token valid

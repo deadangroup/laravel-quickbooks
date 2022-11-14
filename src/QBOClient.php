@@ -1,6 +1,6 @@
 <?php
 
-namespace Deadan\TenancyQBO;
+namespace DGL\TenancyQBO;
 
 use Exception;
 use QuickBooksOnline\API\DataService\DataService;
@@ -11,7 +11,7 @@ use QuickBooksOnline\API\ReportService\ReportService;
 /**
  * Class QBOClient
  *
- * @package Deadan\TenancyQBO
+ * @package DGL\TenancyQBO
  */
 class QBOClient
 {
