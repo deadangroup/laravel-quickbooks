@@ -19,13 +19,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Deadan\\TenancyQBO\\": "src/"
+            "DGL\\TenancyQBO\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Deadan\\TenancyQBO\\Providers\\ModuleServiceProvider"
+                "DGL\\TenancyQBO\\Providers\\ModuleServiceProvider"
             ]
         },
         "branch-alias": {

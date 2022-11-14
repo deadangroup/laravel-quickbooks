@@ -1,12 +1,12 @@
 <?php
 
-namespace Deadan\TenancyQBO\Http\Controllers;
+namespace DGL\TenancyQBO\Http\Controllers;
 
 use dPOS\Integrations\Events\AnalyticsEvent;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as LaravelController;
-use Deadan\TenancyQBO\QBOToken;
-use Deadan\TenancyQBO\QBOClient;
+use DGL\TenancyQBO\QBOToken;
+use DGL\TenancyQBO\QBOClient;
 
 /**
  *
