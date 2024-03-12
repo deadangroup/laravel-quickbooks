@@ -18,7 +18,7 @@ class QBOController extends LaravelController
      */
     public function initiateConnection()
     {
-        $tenantId = tenant('id');
+        $tenantId = request('tenant_id');
 
         //invalidate all previous tokens
         QBOToken::invalidateAllFor($tenantId);
@@ -26,7 +26,7 @@ class QBOController extends LaravelController
         //invalidate all previous tokens
         $token = QBOToken::init($tenantId);
 
-        event(new AnalyticsEvent('QuickBooksConnectionInit'));
+        track('QuickBooksConnectionInit');
 
         return redirect()->route('tenancy_quickbooks.connect', ['token_id' => $token->id]);
     }
