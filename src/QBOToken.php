@@ -1,6 +1,16 @@
 <?php
+/*
+ *
+ *  This is file is part of DGL's tech stack.
+ *
+ *  @copyright (c) 2024, Deadan Group Limited (DGL).
+ *  @link https://www.dgl.co.ke/products
+ *  All rights reserved.
+ *
+ *  <code>Build something people want!</code>
+ */
 
-namespace DGL\TenancyQBO;
+namespace DGL\QBO;
 
 use Carbon\Carbon;
 use DGL\TenancyAccount\Models\Tenant;
@@ -15,7 +25,7 @@ use Stancl\Tenancy\Database\Concerns\CentralConnection;
 /**
  * Class QBOToken
  *
- * @package DGL\TenancyQBO
+ * @package DGL\QBO
  *
  * @property boolean $hasValidAccessToken Is the access token valid
  * @property boolean $hasValidRefreshToken Is the refresh token valid

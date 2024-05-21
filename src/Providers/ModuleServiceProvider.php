@@ -1,11 +1,17 @@
 <?php
 
 /*
- * @copyright Deadan Group Limited
- * <code> Build something people want </code>
+ *
+ *  This is file is part of DGL's tech stack.
+ *
+ *  @copyright (c) 2024, Deadan Group Limited (DGL).
+ *  @link https://www.dgl.co.ke/products
+ *  All rights reserved.
+ *
+ *  <code>Build something people want!</code>
  */
 
-namespace DGL\TenancyQBO\Providers;
+namespace DGL\QBO\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -27,7 +33,7 @@ class ModuleServiceProvider extends ServiceProvider
         $this->loadMigrationsFrom(__DIR__.'/../../resources/database/migrations');
 
         $this->publishes([
-            __DIR__.'/../../config/tenancy_quickbooks.php' => config_path('tenancy_quickbooks.php'),
+            __DIR__ . '/../../config/laravel_quickbooks.php' => config_path('tenancy_quickbooks.php'),
         ], 'quickbooks-config');
 
         $this->publishes([
@@ -46,7 +52,7 @@ class ModuleServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $config = __DIR__.'/../../config/tenancy_quickbooks.php';
+        $config = __DIR__ . '/../../config/laravel_quickbooks.php';
         $this->mergeConfigFrom($config, 'tenancy_quickbooks');
 
         $this->app->register(RouteServiceProvider::class);

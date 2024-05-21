@@ -7,13 +7,13 @@ PHP client wrapping the [QuickBooks PHP SDK](https://github.com/intuit/QuickBook
 1. Install QuickBooks PHP Client:
 
 ```bash
-$ composer require deadangroup/tenancy-quickbooks
+$ composer require deadangroup/laravel-quickbooks
 ```
 
 2. Run our migration to install the `quickbooks_tokens` table:
 
 ```bash
-$ php artisan migrate --package=deadangroup/tenancy-quickbooks
+$ php artisan migrate --package=deadangroup/laravel-quickbooks
 ```
 
 The package uses the [auto registration feature](https://laravel.com/docs/packages#package-discovery) of Laravel.

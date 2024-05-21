@@ -1,6 +1,16 @@
 <?php
+/*
+ *
+ *  This is file is part of DGL's tech stack.
+ *
+ *  @copyright (c) 2024, Deadan Group Limited (DGL).
+ *  @link https://www.dgl.co.ke/products
+ *  All rights reserved.
+ *
+ *  <code>Build something people want!</code>
+ */
 
-namespace DGL\TenancyQBO;
+namespace DGL\QBO;
 
 use Exception;
 use QuickBooksOnline\API\DataService\DataService;
@@ -11,7 +21,7 @@ use QuickBooksOnline\API\ReportService\ReportService;
 /**
  * Class QBOClient
  *
- * @package DGL\TenancyQBO
+ * @package DGL\QBO
  */
 class QBOClient
 {
