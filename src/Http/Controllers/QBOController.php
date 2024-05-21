@@ -1,12 +1,21 @@
 <?php
+/*
+ *
+ *  This is file is part of DGL's tech stack.
+ *
+ *  @copyright (c) 2024, Deadan Group Limited (DGL).
+ *  @link https://www.dgl.co.ke/products
+ *  All rights reserved.
+ *
+ *  <code>Build something people want!</code>
+ */
 
-namespace DGL\TenancyQBO\Http\Controllers;
+namespace DGL\QBO\Http\Controllers;
 
-use dPOS\Integrations\Events\AnalyticsEvent;
+use DGL\QBO\QBOClient;
+use DGL\QBO\QBOToken;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as LaravelController;
-use DGL\TenancyQBO\QBOToken;
-use DGL\TenancyQBO\QBOClient;
 
 /**
  *

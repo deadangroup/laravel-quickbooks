@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!--
+  ~
+  ~  This is file is part of DGL's tech stack.
+  ~
+  ~  @copyright (c) 2024, Deadan Group Limited (DGL).
+  ~  @link https://www.dgl.co.ke/products
+  ~  All rights reserved.
+  ~
+  ~  <code>Build something people want!</code>
+  -->
+
+<!--
     This is the "dist(ribution)" phpunit.xml.dist file.  It sets the defaults that are then over written by any files in
     phpunit.xml, which is then over wrote by flags passed in via the command line.  The plan is that this file is to be
     used by ci to do the full suit of tests, and a developer can copy this file to phpunit.xml to trim down some of the
