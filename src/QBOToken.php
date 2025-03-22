@@ -13,7 +13,7 @@
 namespace DGL\QBO;
 
 use Carbon\Carbon;
-use DGL\TenancyAccount\Models\Tenant;
+use DGL\Multitenancy\Models\Tenants\Tenant;
 use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
